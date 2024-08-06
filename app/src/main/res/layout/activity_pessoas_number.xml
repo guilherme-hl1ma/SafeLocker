@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gerente.PessoasNumberActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de Pessoas"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        style="@style/textview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSubtitle"
+        style="@style/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:text="Quantas pessoas irão acessar o armário?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:id="@+id/radioBtn1Person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 pessoa" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2People"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 pessoas" />
+    </RadioGroup>
+
+    <!--<com.google.android.material.button.MaterialButtonToggleGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearOnePerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioBtn1Person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOnePerson"
+            style="@style/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 pessoa"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearTwoPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp"
+        app:layout_constraintTop_toBottomOf="@id/linearOnePerson">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioBtn2People"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTwoPerson"
+            style="@style/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 pessoas"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnProsseguir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="50dp"
+        android:text="Prosseguir"
+        style="@style/containedbutton"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:elevation="2dp"
+        app:menu="@menu/bottom_menu_gerente"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/no_selected"
+        app:itemRippleColor="@color/azul_secondary"
+        app:labelVisibilityMode="unlabeled" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">PI3-ES-2024-T2</string>
+    <string name="seja_bem_vindo">Seja bem-vindo</string>
+    <string name="garanta_a_seguran_a_dos_seus_pertences">Garanta a segurança dos seus pertences.</string>
+    <string name="alugue_um_arm_rio">Alugue um armário!</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="consultar_locais">Consultar Locais</string>
+    <string name="cadastro_o_cart_o">Cadastro o cartão</string>
+    <string name="preencha_todos_os_dados_do_seu_cart_o">Preencha todos os dados do seu cartão.</string>
+    <string name="nome_do_titular">Nome do Titular</string>
+    <string name="n_mero">Número</string>
+    <string name="data_de_vencimento">Data de Vencimento</string>
+    <string name="digite_no_seguinte_formato_mm_aa">Digite no seguinte formato: MM/AA</string>
+    <string name="cadastrar_cart_o">Cadastrar Cartão</string>
+    <string name="retornar">retornar</string>
+    <string name="esqueceu_a_senha">Esqueceu a senha?</string>
+    <string name="email">Email</string>
+    <string name="resetar_senha">Resetar senha</string>
+    <string name="sair">Sair</string>
+    <string name="cadastrar_cartao">Cadastrar cartao</string>
+    <string name="bem_vindo_de_volta">Bem-vindo de volta!</string>
+    <string name="preencha_os_campos_para_entrar">Preencha os campos para entrar.</string>
+    <string name="senha">Senha</string>
+    <string name="esqueci_a_senha">Esqueci a senha</string>
+    <string name="ainda_n_o_possui_conta">Ainda não possui conta?</string>
+    <string name="cadastre_se_aqui">Cadastre-se aqui.</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="cpf">CPF</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="telefone">Telefone</string>
+    <string name="verificar_por_sms">Verificar por SMS</string>
+    <string name="verificar_por_email">Verificar por Email</string>
+    <string name="ja_tem_login">Ja tem login?</string>
+    <string name="voltar">Voltar</string>
+    <string name="verifique_a_conta">Verifique a conta</string>
+    <string name="escolha_como_verificar_sua_conta">Escolha como verificar sua conta.</string>
+    <string name="verificar">Verificar</string>
+    <string name="verifique_o_sms">Verifique o SMS</string>
+    <string name="digite_o_c_digo_que_foi_enviado_para_o_seu_celular">Digite o código que foi enviado para o seu celular.</string>
+    <string name="ainda_n_o_recebeu_o_c_digo">Ainda não recebeu o código?</string>
+    <string name="reenviar">Reenviar</string>
+    <string name="verificar_sms">VERIFICAR SMS</string>
+    <string name="crie_sua_conta">Crie sua conta</string>
+    <string name="c_digo_sms">Código SMS</string>
+    <string name="BottomNav">Bottom Navigation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_cancelar_rota">Cancelar</string>
+    <string name="btn_rent_this_location">Alugar Armário</string>
+    <string name="btn_ir_ate_local">Ir até local</string>
+    <string name="header_help_location">Faça sua locação</string>
+    <string name="subtitle_helper_location">Encontre no mapa o ponto desejado</string>
+    <string name="helper_header_location2">Selecione seu destino</string>
+    <string name="header_fragment_rent_locker">Alugar Armário</string>
+    <string name="helper_fragment_rent_locker">Clique em alugar armário para começar sua locação.</string>
+    <string name="content_description_initial_activity">Imagem Ilustrativa Aluguel</string>
+    <string name="icon_arrow_back_text">Flecha apontando para esquerda</string>
+    <string name="helper_forgot_password_activity">Digite o email do usuário, que será enviado o link para trocar a senha.</string>
+    <string name="preencha_os_campos_para_cadastrar_sua_conta">Preencha os campos para cadastrar sua conta.</string>
+    <string name="permissao_para_mostrar_o_mapa">Permissão necessária para mostrar o
+        mapa.</string>
+    <string name="liberar_nas_configuracoes">Você deverá liberar a permissão nas configurações
+        para poder visualizar o mapa.</string>
+    <string name="permissao_para_mostrar_a_preview">Permissão necessária para mostrar a
+        camera.</string>
+    <string name="liberar_nas_configuracoes_preview">Você deverá liberar a permissão nas configurações
+        para poder visualizar a camera.</string>
+    <string name="notification_channel_name">primary_channel_id</string>
+    <string name="notification_channel_description">Exibir se há uma locação pendente.</string>
+    <string name="alugar_armario">Alugar Armário</string>
+    <string name="email_tv_account">Email</string>
+    <string name="numero_de_telefone_tv_account">Número de Telefone</string>
+    <string name="cpf_tv_account">CPF</string>
+    <string name="data_de_nascimento_tv_account">Data de Nascimento</string>
+    <string name="btn_voltar">Voltar</string>
+    <string name="liberar_locacao">Clique em finalizar para liberar a locação.</string>
+    <string name="escanear_novamente">Clique em escanear para validar a segunda pulseira.</string>
+</resources>

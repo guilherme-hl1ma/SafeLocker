@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/background"
+    tools:context=".InitialActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMainIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_initial_activity"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/content_description_initial_activity"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHeaderInitialActivity"
+        app:layout_constraintTop_toBottomOf="@id/ivMainIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/seja_bem_vindo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginStart="45dp"
+        style="@style/textview"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHelper1"
+        app:layout_constraintTop_toBottomOf="@id/tvHeaderInitialActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/garanta_a_seguran_a_dos_seus_pertences"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:layout_marginStart="45dp"
+        style="@style/textview"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHelper2"
+        app:layout_constraintTop_toBottomOf="@id/tvHelper1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/alugue_um_arm_rio"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:layout_marginStart="45dp"
+        style="@style/textview"
+    />
+
+    <Button
+        android:id="@+id/btnEntrar"
+        app:layout_constraintTop_toBottomOf="@id/tvHelper2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entrar"
+        style="@style/containedbutton"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+    />
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        app:layout_constraintTop_toBottomOf="@id/btnEntrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cadastrar"
+        style="@style/outlinedbutton"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+    />
+
+    <Button
+        android:id="@+id/btnConsultarLocais"
+        app:layout_constraintTop_toBottomOf="@id/btnCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/consultar_locais"
+        android:textAllCaps="true"
+        style="@style/textbutton"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginStart="45dp"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

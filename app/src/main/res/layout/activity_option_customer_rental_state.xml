@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gerente.OptionCustomerRentalState">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opção do Cliente"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        style="@style/textview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/subTitle"
+        style="@style/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:text="Pergunte se o cliente deseja encerrar a locação."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintTop_toBottomOf="@id/Title"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAbrirMoment"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:textAllCaps="false"
+        android:text="Abrir Momentaneamente"
+        app:layout_constraintTop_toBottomOf="@id/subTitle"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="left|center_vertical"
+        android:layout_marginEnd="120dp"
+        app:icon="@drawable/icon_lock"
+        style="@style/outlinedbutton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEncerrarLocal"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="20dp"
+        android:text="Encerrar locação"
+        android:gravity="left|center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/btnAbrirMoment"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp"
+        app:icon="@drawable/icon_cancel_24"
+        style="@style/outlinedbutton"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:elevation="2dp"
+        app:menu="@menu/bottom_menu_gerente"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/no_selected"
+        app:itemRippleColor="@color/azul_secondary"
+        app:labelVisibilityMode="unlabeled" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

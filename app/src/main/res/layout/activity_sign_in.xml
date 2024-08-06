@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/background"
+    tools:context=".SignInActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"
+        />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logomarca"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/imageview_logo"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="80dp"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHeader1"
+        app:layout_constraintTop_toBottomOf="@id/logomarca"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bem_vindo_de_volta"
+        style="@style/textview"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSubHeader1"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/textview"
+        android:text="@string/preencha_os_campos_para_entrar"
+        android:textSize="14sp"
+        android:layout_marginStart="45dp"
+    />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        app:layout_constraintTop_toBottomOf="@id/tvSubHeader1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/textfield"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/mtrl_ic_error"
+        android:hint="@string/email"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        app:startIconDrawable="@drawable/icon_email"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@id/tilEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textfield"
+        android:hint="@string/senha"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/mtrl_ic_error"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:startIconDrawable="@drawable/icon_lock">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnEsqueciSenha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/esqueci_a_senha"
+        android:textColor="@color/azul_secondary"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+    />
+
+
+    <Button
+        android:id="@+id/btnSingIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnEsqueciSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entrar"
+        style="@style/containedbutton"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="40dp"
+    />
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ainda_n_o_possui_conta"
+            style="@style/textview"
+            android:textAlignment="center"
+            android:layout_marginStart="50dp"/>
+
+        <Button
+            android:id="@+id/btnSingUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cadastre_se_aqui"
+            android:textColor="@color/azul_secondary"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".gerente.ClearTagNfcFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- CONTAINER QUE POSSUI AS VIEWS PERTINENTES Á LIMPEZA DA TAG -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerClearTag"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encerrar Locação"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            style="@style/textview"
+            android:layout_marginStart="45dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aproxime a pulseira do cliente para apagar os dados da pulseira."
+            style="@style/textview"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintTop_toBottomOf="@id/Title"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/cpiReadNfc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/azul_primary"
+            android:indeterminate="true"
+            android:visibility="visible"
+            />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:elevation="2dp"
+            app:menu="@menu/bottom_menu_gerente"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/no_selected"
+            app:itemRippleColor="@color/azul_secondary"
+            app:labelVisibilityMode="unlabeled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CONTAINER QUE CONTÉM UM FEEDBACK DE LOADING DA LIMPEZA DA TAG-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerLoading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/azul_primary"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleLoading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limpando os dados da tag..."
+            android:textColor="@color/white_high_emphasis"
+            android:textSize="24sp"
+            />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/cpiLoading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/white_high_emphasis"
+            android:indeterminate="true"
+            android:visibility="visible"
+            android:layout_marginTop="20dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

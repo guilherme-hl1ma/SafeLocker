@@ -1,0 +1,619 @@
+Aqui esta o arquivo o professor Matheus poder analisar as functions do backend
+
+Colocamos em txt para não afetar o android/execução...
+
+import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+
+const app = admin.initializeApp();
+const db = app.firestore();
+const colUSer = db.collection("USER");
+const colCredito = db.collection("CREDITO");
+const colArmario = db.collection("ARMARIO");
+const colLocacao = db.collection("locacao");
+
+interface CallableResponse {
+    status: string,
+    message: string,
+    payload: JSON
+}
+interface credito {
+    titular: string,
+    numero: string,
+    dataValidade: string,
+}
+interface Usuario {
+      userUid: string,
+      email: string,
+      senha: string,
+      nome: string,
+      cpf: string,
+      dataNascimento: string,
+      telefone: string,
+      tipoUsuario: string,
+}
+
+interface Armario {
+  nomeArmario: string,
+  descricao: string,
+  latArmario: number,
+  lotArmario: number,
+  precos: Array<number>,
+}
+
+// eslint-disable-next-line require-jsdoc
+function analyzeCredito(c: credito) : number {
+  if (!c.titular || c.titular === "") {
+    return 1;
+  }
+  if (!c.numero || c.numero === "") {
+    return 2;
+  }
+  if (!c.dataValidade || c.dataValidade === "") {
+    return 3;
+  }
+  return 0;
+}
+
+// eslint-disable-next-line require-jsdoc
+function analyzeUser(u: Usuario) : number {
+  if (!u.email || u.email === "") {
+    return 1;
+  }
+  if (!u.nome || u.nome === "") {
+    return 2;
+  }
+  if (!u.cpf || u.cpf === "") {
+    return 3;
+  }
+  if (!u.dataNascimento || u.dataNascimento === "") {
+    return 4;
+  }
+  if (!u.telefone || u.telefone === "") {
+    return 5;
+  }
+  return 0;
+}
+// eslint-disable-next-line require-jsdoc
+function getErrorMessageCredito(code: number ) : string {
+  let message = "";
+  if (code === 1) {
+    message = "Titular nao informado";
+  } else if (code === 2) {
+    message = "Numero do cartão não informado";
+  } else if (code === 3) {
+    message = "Data de validade não informada";
+  }
+  return message;
+}
+
+// eslint-disable-next-line require-jsdoc
+function getErrorMessage(code: number) : string {
+  let message = "";
+  if (code === 1) {
+    message = "Email não informado.";
+  } else if (code === 2) {
+    message = "Nome não informado";
+  } else if (code === 3) {
+    message = "Cpf não informado";
+  } else if (code === 4) {
+    message = "Data de nascimento não informada";
+  } else if (code === 5) {
+    message = "Telefone não informado";
+  }
+  return message;
+}
+
+export const addNewUser = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    let result: CallableResponse;
+
+    functions.logger.info("addNewUser - Iniciada.");
+    const userDados = {
+      userUid: data.userUid,
+      email: data.email,
+      senha: "",
+      nome: data.nome,
+      cpf: data.cpf,
+      dataNascimento: data.dataNascimento,
+      telefone: data.telefone,
+      tipoUsuario: data.tipoUsuario,
+    };
+    const errorCode = analyzeUser(userDados);
+    const errorMessage = getErrorMessage(errorCode);
+    if (errorCode > 0) {
+      functions.logger.error("addNewUser " +
+      "- Erro ao inserir novo usuario:" +
+      errorCode.toString()),
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify({docId: null})),
+      };
+      console.log(result);
+    } else {
+      const docRef = await colUSer.add(userDados);
+      result = {
+        status: "SUCCESS",
+        message: "usuario inserido com sucesso.",
+        payload: JSON.parse(JSON.stringify({docId: docRef.id.toString()})),
+      };
+    }
+    functions.logger.info("addNewUser - Novo usuario inserido");
+    return result;
+  });
+
+export const addCartaoCredito = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, contex) => {
+    let result: CallableResponse;
+
+    functions.logger.info("addCartaoCredito - Iniciada.");
+    const userDados = {
+      docIdUser: data.docIdUser,
+      titular: data.titular,
+      numero: data.numero,
+      dataValidade: data.dataValidade,
+    };
+    const errorCode = analyzeCredito(userDados);
+    const errorMessage = getErrorMessageCredito(errorCode);
+    if (errorCode > 0) {
+      functions.logger.error("addCartaoCredito " +
+      "- Erro ao inserir novo cartão:" +
+      errorCode.toString()),
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify({docId: null})),
+      };
+      console.log(result);
+    } else {
+      const docRef = await colCredito.add(userDados);
+      result = {
+        status: "SUCCESS",
+        message: "Cartao inserido com sucesso.",
+        payload: JSON.parse(JSON.stringify({docId: docRef.id.toString()})),
+      };
+    }
+    functions.logger.info("addCartaoCredito - Novo cartão inserido");
+    return result;
+  });
+
+export const consultaCartao = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    let result: CallableResponse;
+    functions.logger.info("consultaCartão - Iniciada.");
+
+    const userDados = {
+      userId: data.userid,
+    };
+
+    const cartoes: FirebaseFirestore.DocumentData[] = [];
+    // eslint-disable-next-line max-len
+    const snapshot = await colCredito.where("docIdUser", "==", userDados.userId.toString()).get();
+
+    snapshot.forEach((doc) => {
+      cartoes.push(doc.data());
+    });
+
+    if (cartoes.length > 0) {
+      result = {
+        status: "SUCCESS",
+        message: "Possui cartão",
+        payload: JSON.parse(JSON.stringify({cartoes: cartoes})),
+      };
+    } else {
+      result = {
+        status: "SUCCESS",
+        message: "NÃO POSSUIR CARTÃO",
+        payload: JSON.parse(JSON.stringify({cartoes: cartoes})),
+      };
+    }
+    return result;
+  });
+
+export const consultarArmarios = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, contex) => {
+    let result: CallableResponse;
+    functions.logger.info("ConsultaArmario Ativada");
+    /* const amariosData = {
+      nomeArmario: data.nomeArmario,
+      latArmario: data.larrAmario,
+      lotArmario: data.lotrAmario,
+    }
+    */
+    const armarios: FirebaseFirestore.DocumentData[] = [];
+    // eslint-disable-next-line max-len
+    const snapshot = await colArmario.get();
+    snapshot.forEach((doc) => {
+      armarios.push(doc.data());
+    });
+    if (armarios.length > 0) {
+      result = {
+        status: "SUCCESS",
+        message: "Armarios encontrados",
+        payload: JSON.parse(JSON.stringify({armarios: armarios})),
+      };
+    } else {
+      result = {
+        status: "ERROR",
+        message: "NENHUM ARMARIO INCONTRADO",
+        payload: JSON.parse(JSON.stringify({armarios: armarios})),
+      };
+    }
+    return result;
+  });
+
+export const getUserByUid = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    // response to client
+    let result: CallableResponse;
+    try {
+      // userUid param to search the corresponding user
+      const userUid = data.userUid;
+      const user: Array<Usuario> = [];
+
+      // search using userUid param
+      const snapshot = await colUSer.where("userUid", "==", userUid).get();
+      // mounting the User object that will be return
+      snapshot.forEach((doc) => {
+        const value = doc.data();
+        user.push({
+          userUid: value.userUid,
+          email: value.email,
+          senha: value.senha,
+          nome: value.nome,
+          cpf: value.cpf,
+          dataNascimento: value.dataNascimento,
+          telefone: value.telefone,
+          tipoUsuario: value.tipoUsuario,
+        });
+      });
+      functions.logger.info("getUser: User found");
+      if (user.length > 0) {
+        result = {
+          status: "SUCESS",
+          message: "User found",
+          payload: JSON.parse(JSON.stringify(user)),
+        };
+      } else {
+        functions.logger.info("getUser: User not found");
+        result = {
+          status: "ERROR",
+          message: "User not found",
+          payload: JSON.parse(JSON.stringify(null)),
+        };
+      }
+    } catch (e) {
+      let errorMessage = "";
+      if (e instanceof Error) errorMessage = e.message;
+      functions.logger.error(`getUser: Error to fetch the user: ${e}`);
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify(null)),
+      };
+    }
+    return result;
+  });
+
+  export const getUserType = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    // response to client
+    let result: CallableResponse;
+    try {
+      // userUid param to search the corresponding user
+      const userUid = data.userUid;
+      let userType;
+
+      // search using userUid param
+      const snapshot = await colUSer.where("userUid", "==", userUid).get();
+      // mounting the User object that will be return
+      snapshot.forEach((doc) => {
+        const value = doc.data();
+        userType = value.tipoUsuario
+      });
+      functions.logger.info("getUser: User found");
+      if (userType) {
+        result = {
+          status: "SUCESS",
+          message: "User found",
+          payload: JSON.parse(JSON.stringify(userType)),
+        };
+      } else {
+        functions.logger.info("getUser: User not found");
+        result = {
+          status: "ERROR",
+          message: "User not found",
+          payload: JSON.parse(JSON.stringify(null)),
+        };
+      }
+    } catch (e) {
+      let errorMessage = "";
+      if (e instanceof Error) errorMessage = e.message;
+      functions.logger.error(`getUser: Error to fetch the user: ${e}`);
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify(null)),
+      };
+    }
+    return result;
+  });
+
+
+export const createLocacao = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data) => {
+    let result: CallableResponse;
+
+    try {
+      functions.logger.info("createRent - Iniciada");
+
+      let latArmario = data.latArmario
+      let lotArmario = data.lotArmario
+      let valorDiaria = data.valorDiaria
+      let valorPago = data.valorPago
+
+      const snapshot = await colArmario.where("latArmario", "==", latArmario).where("lotArmario", "==", lotArmario).get()
+
+      let docRefArmario = null
+
+      if (!snapshot.empty) {
+        snapshot.forEach(doc => {
+          docRefArmario = doc.id;
+        });
+      } else {
+        throw new Error("Armário não encontrado");
+      }
+
+      const rentData = {
+        userUid: data.userUid,
+        docIdArmario: docRefArmario,
+        qtdTags: 0,
+        qtdTagAx: 0,
+        estado: "Aberta",
+        valorDiaria,
+        valorPago,
+        dateLocacao: data.dateLocacao,
+      };
+
+      const docRef = await colLocacao.add(rentData);
+      result = {
+        status: "SUCCESS",
+        message: "Locação registrada com sucesso",
+        payload: JSON.parse(JSON.stringify({docId: docRef.id.toString()})),
+      };
+    } catch (error) {
+      let errorMessage = "";
+      if (error instanceof Error) errorMessage = error.message;
+      functions.logger.error(`createRent: Error to create the rent: ${error}`);
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify(null)),
+      };
+    }
+    return result;
+  });
+
+  export const inserirTagsLocacao = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data) => {
+    let result: CallableResponse;
+
+    try {
+      functions.logger.info("inserirTagsLocacao - Iniciada");
+
+      let idLocacao = data.idLocacao
+      let qtdTags = data.qtdTags
+
+      const docRef = await colLocacao.doc(idLocacao);
+
+      docRef.update({ qtdTags: qtdTags})
+
+      result = {
+        status: "SUCCESS",
+        message: "Numero de tag inserido",
+        payload: JSON.parse(JSON.stringify({docId: docRef.id.toString()})),
+      };
+
+    } catch (error) {
+      let errorMessage = "";
+      if (error instanceof Error) errorMessage = error.message;
+      functions.logger.error(`createRent: Error to create the rent: ${error}`);
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify(null)),
+      };
+    }
+    return result;
+  });
+
+  export const opTags = functions.region("southamerica-east1").https.onCall(async (data) => {
+    let result: CallableResponse;
+    let docId = data.docId;
+    let op = data.op;
+
+    try {
+        functions.logger.info("opTags - Iniciada com docId:", docId, " e op:", op);
+
+        const docRef = colLocacao.doc(docId);
+        const docSnapshot = await docRef.get();
+
+        if (!docSnapshot.exists) {
+            throw new Error("Documento não encontrado");
+        }
+
+        const docData = docSnapshot.data();
+        functions.logger.info("Dados do documento:", docData);
+
+        let qtdTagAx = docData?.qtdTagAx;
+        let qtdTags = docData?.qtdTags;
+        let estado = docData?.estado;
+
+        if(estado === "Encerrada") {
+          throw new Error("Locação encerrada");
+        }
+
+        if (qtdTagAx === undefined || qtdTags === undefined) {
+            throw new Error("Dados insuficientes no documento");
+        }
+
+        if (op === 1) {
+          if (qtdTagAx === qtdTags) {
+            throw new Error("Não é possivel adcionar nenhuma tag a esta locação");
+        }
+            qtdTagAx += 1;
+        } else if (op === 2) {
+          if (qtdTagAx === 0) {
+            throw new Error("Não há nenhuma tag cadastrada nesta locação");
+          }
+            qtdTagAx -= 1;
+        }
+
+        await docRef.update({ qtdTagAx });
+
+        result = {
+            status: "SUCCESS",
+            message: "Operação concluída com sucesso",
+            payload: JSON.parse(JSON.stringify({ qtdTagAx, qtdTags })),
+        };
+    } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) errorMessage = error.message;
+        functions.logger.error(`opTags: Error in operation: ${error}`);
+        result = {
+            status: "ERROR",
+            message: errorMessage,
+            payload: JSON.parse(JSON.stringify(null)),
+        };
+    }
+
+    return result;
+});
+
+  export const encerrarLocacao = functions.region("southamerica-east1").https.onCall(async (data) => {
+    let result : CallableResponse;
+
+    let docId = data.docId
+
+    try {
+      functions.logger.info("encerrarLocacao - Iniciada com docId:", docId);
+
+      const docRef = colLocacao.doc(docId);
+      const docSnapshot = await docRef.get();
+
+      if (!docSnapshot.exists) {
+          throw new Error("Documento não encontrado");
+      }
+
+      const docData = docSnapshot.data();
+      functions.logger.info("Dados do documento:", docData);
+
+      let qtdTagAx = docData?.qtdTagAx;
+      let estado = docData?.estado;
+      let valorDiaria = docData?.valorDiaria;
+      let valorPago = docData?.valorPago;
+      let valorReembolso;
+
+      if(estado === "Encerrada") {
+        throw new Error("Locação ja foi encerrada");
+      }
+
+      if (qtdTagAx === 0) {
+        estado = "Encerrada"
+        valorReembolso = valorDiaria-valorPago
+      }
+
+      if (qtdTagAx > 0) {
+        throw new Error("Não é possivel encerrar locação o cliente ainda tem que devolver tags");
+      }
+
+      await docRef.update({ estado });
+
+      result = {
+          status: "SUCCESS",
+          message: "Locacao encerrada com sucesso",
+          payload: JSON.parse(JSON.stringify({ estado, valorReembolso })),
+      };
+
+  } catch (error) {
+      let errorMessage = "";
+      if (error instanceof Error) errorMessage = error.message;
+      functions.logger.error(`encerrarLocacao: Error in operation: ${error}`);
+      result = {
+          status: "ERROR",
+          message: errorMessage,
+          payload: JSON.parse(JSON.stringify(null)),
+      };
+  }
+
+  return result;
+});
+
+
+
+  export const getArmarioByLatLng = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data) => {
+    // response to client
+    let result: CallableResponse;
+    try {
+      // Rent's Latitude received as a param
+      const lat = data.latArmario;
+      // Rent's Longitude received as a param
+      const lng = data.lotArmario;
+
+      const armario: Array<Armario> = [];
+
+      // search using lat and lng params
+      const snapshot = await colArmario.where("latArmario", "==", lat)
+        .where("lotArmario", "==", lng).get();
+
+      // mounting the Armario object that will be return
+      snapshot.forEach((doc) => {
+        const value = doc.data();
+        armario.push({
+          nomeArmario: value.nomeArmario,
+          descricao: value.descricao,
+          latArmario: value.latArmario,
+          lotArmario: value.lotArmario,
+          precos: value.PRECO,
+        });
+      });
+      functions.logger.info("getAmarioByLatLng: Armario found");
+      if (armario.length > 0) {
+        result = {
+          status: "SUCCESS",
+          message: "Armario found",
+          payload: JSON.parse(JSON.stringify(armario)),
+        };
+      } else {
+        functions.logger.info("getAmarioByLatLng: armario not found");
+        result = {
+          status: "ERROR",
+          message: "Armario not found",
+          payload: JSON.parse(JSON.stringify(null)),
+        };
+      }
+    } catch (e) {
+      let errorMessage = "";
+      if (e instanceof Error) errorMessage = e.message;
+      functions.logger
+        .error(`getArmarioByLatLng: Error to fetch the armario: ${e}`);
+      result = {
+        status: "ERROR",
+        message: errorMessage,
+        payload: JSON.parse(JSON.stringify(null)),
+      };
+    }
+    return result;
+  });
+

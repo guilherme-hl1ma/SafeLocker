@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/background"
+    tools:context=".VerifySmsActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivVerifySmsImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_verification_sms"
+        android:layout_marginTop="50dp"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHeader"
+        app:layout_constraintTop_toBottomOf="@id/ivVerifySmsImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verifique_o_sms"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        style="@style/textview"
+        android:layout_marginStart="45dp"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSubtitle"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/digite_o_c_digo_que_foi_enviado_para_o_seu_celular"
+        android:textSize="14sp"
+        style="@style/textview"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+    />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSms"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textfield"
+        android:hint="@string/c_digo_sms"
+        app:errorEnabled="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="40dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCodigoVerificao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:maxLength="6"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnVerificarSms"
+        app:layout_constraintTop_toBottomOf="@id/tilSms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/containedbutton"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/verificar_sms"
+    />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        app:layout_constraintTop_toBottomOf="@id/btnVerificarSms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_voltar"
+        style="@style/outlinedbutton"
+        android:layout_marginEnd="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBarVerifySMS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorColor="@color/azul_primary"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:layout_marginTop="40dp"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

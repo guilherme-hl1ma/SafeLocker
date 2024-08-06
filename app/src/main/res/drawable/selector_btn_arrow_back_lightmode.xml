@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:drawable="@drawable/shape_pressed_arrow_back" />
+            <item android:drawable="@drawable/icon_arrow_back_24_darkmode" />
+        </layer-list>
+    </item>
+    <item android:state_focused="true">
+        <layer-list>
+            <item android:drawable="@drawable/shape_pressed_arrow_back" />
+            <item android:drawable="@drawable/icon_arrow_back_24_darkmode" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:drawable="@android:color/transparent" />
+            <item android:drawable="@drawable/icon_arrow_back_24" />
+        </layer-list>
+    </item>
+</selector>

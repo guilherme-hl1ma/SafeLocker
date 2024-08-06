@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/background"
+    tools:context=".LocationActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMapa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Para visualizar o mapa por favor autorize sua localização."
+        style="@style/textview"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="30dp"
+        />
+
+    <Button
+        android:id="@+id/btnRequest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMapa"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/outlinedbutton"
+        android:text="Permitir"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/standardBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/bottomsheet"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerHelper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iconMinimize"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_minimize_24"
+                    android:scaleType="fitXY"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeader1"
+                    app:layout_constraintTop_toBottomOf="@id/iconMinimize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/helper_header_location2"
+                    style="@style/textview"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubHeader1"
+                    app:layout_constraintTop_toBottomOf="@id/tvHeader1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/subtitle_helper_location"
+                    style="@style/textview"
+                    android:textStyle="normal"
+                />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Container que guarda a informação do marcador clicado -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iconMinimize2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_minimize_24"
+                    android:scaleType="fitXY"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeader2"
+                    app:layout_constraintTop_toBottomOf="@id/iconMinimize2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/header_help_location"
+                    style="@style/textview"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/iconPin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/icon_location_pin_24_azul_primary"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="45dp"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLockerName"
+                    app:layout_constraintStart_toEndOf="@id/iconPin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvHeader2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/textview"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginEnd="45dp"
+                    android:layout_marginTop="20dp"
+                />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLockerReference"
+                    app:layout_constraintStart_toEndOf="@id/iconPin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLockerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    style="@style/textview"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginEnd="45dp"
+                />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    app:layout_constraintTop_toBottomOf="@id/tvLockerReference"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnIr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_ir_ate_local"
+                        android:visibility="gone"
+                        style="@style/outlinedbutton"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="30dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btnCancelar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_cancelar_rota"
+                        android:visibility="gone"
+                        style="@style/outlinedbutton"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="30dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btnRentThisLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_rent_this_location"
+                        style="@style/containedbutton"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="20dp"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:elevation="2dp"
+        app:menu="@menu/bottom_menu"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@color/azul_secondary"
+        app:labelVisibilityMode="unlabeled"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

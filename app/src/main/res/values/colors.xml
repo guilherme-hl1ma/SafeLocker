@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white_medium_emphasis">#99FFFFFF</color>
+    <color name="cinza">#E5E8EC</color>
+    <color name="red_error">#B00020</color>
+    <color name="green_correct">#28A745</color>
+    <color name="no_selected">#B3FFFFFF</color>
+
+    <!-- Paleta de Cores -->
+    <color name="azul_primary">#4057EB</color>
+    <color name="azul_secondary">#465091</color>
+    <color name="azul_splash">#4057EB</color>
+    <color name="cinza_escuro">#2D2E33</color>
+
+    <!-- Background Colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_grey">#121212</color>
+
+    <!-- TextView Colors -->
+    <color name="white_high_emphasis">#DEFFFFFF</color>
+
+    <!-- Status Bar Color -->
+    <color name="azul_statusbar">#4057EB</color>
+
+</resources>

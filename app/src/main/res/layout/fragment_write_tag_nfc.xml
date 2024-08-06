@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".gerente.WriteTagNfcFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- CONTAINER PARA EXIBIR A ESPERA DA IDENTIFICAÇÃO DA TAG NFC -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerEscreverNfc"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escrever os Dados"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            style="@style/textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="45dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aproxime a pulseira para guardar os dados do cliente."
+            style="@style/textview"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintTop_toBottomOf="@id/Title"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/cpiReadNfc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/azul_primary"
+            android:indeterminate="true"
+            android:visibility="visible"
+            />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:elevation="2dp"
+            app:menu="@menu/bottom_menu_gerente"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/no_selected"
+            app:itemRippleColor="@color/azul_secondary"
+            app:labelVisibilityMode="unlabeled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CONTAINER PARA AGUARDAR O USUÁRIO CLICAR EM FINALIZAR -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerFinalizar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="129dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/baseline_check_circle_24"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pulseira Escaneada"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            style="@style/textview"
+            app:layout_constraintTop_toBottomOf="@id/ivCheck"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="45dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubTitle2"
+            style="@style/textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:text="@string/liberar_locacao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle2"/>
+
+        <Button
+            android:id="@+id/btnFinish"
+            app:layout_constraintTop_toBottomOf="@id/tvSubTitle2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="45dp"
+            android:text="Finalizar"
+            style="@style/containedbutton"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

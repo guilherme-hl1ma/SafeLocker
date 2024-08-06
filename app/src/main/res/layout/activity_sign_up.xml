@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/background"
+    tools:context=".SignUpActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat"
+        android:layout_marginBottom="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/btn_arrow_back"
+            android:padding="15dp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHeader"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crie_sua_conta"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                style="@style/textview"
+                android:textAlignment="center"
+            />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/preencha_os_campos_para_cadastrar_sua_conta"
+                style="@style/textview"
+            />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSubitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                app:startIconDrawable="@drawable/icon_email"
+                android:hint="@string/email"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSenha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                app:helperTextEnabled="true"
+                app:helperText="A senha deve ter no mínimo 6 dígitos"
+                app:startIconDrawable="@drawable/icon_lock"
+                android:hint="@string/senha"
+                app:endIconMode="password_toggle"
+                android:layout_marginTop="20dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                app:startIconDrawable="@drawable/icon_person"
+                android:hint="@string/nome_completo"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCpf"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                app:startIconDrawable="@drawable/icon_poster"
+                android:hint="@string/cpf"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:maxLength="14"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDataNascimento"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilCpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                app:helperTextEnabled="true"
+                app:helperText="Digite apenas números"
+                app:startIconDrawable="@drawable/icon_cake"
+                android:hint="@string/data_de_nascimento"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDataNascimento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:maxLength="10"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTelefone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilDataNascimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textfield"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/mtrl_ic_error"
+                android:hint="@string/telefone"
+                android:layout_marginTop="20dp"
+                app:startIconDrawable="@drawable/icon_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTelefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="13"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radioBtnSMS"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/radiobutton"
+                android:text="@string/verificar_por_sms"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radioBtnEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioBtnSMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/radiobutton"
+                android:text="@string/verificar_por_email"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/containerMsgError"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioBtnEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_error_red_24"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selecione um tipo de verificação."
+                    android:textColor="?attr/colorError"
+                    android:layout_gravity="center_vertical"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <Button
+                android:id="@+id/btnSingUp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerMsgError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/containedbutton"
+                android:text="@string/cadastrar"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+            />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarSignUp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioBtnEmail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorColor="@color/azul_primary"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

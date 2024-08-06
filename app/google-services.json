@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974313900550",
+    "project_id": "pi3-es-2024-t2",
+    "storage_bucket": "pi3-es-2024-t2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974313900550:android:bafdb2cff596dd41b31187",
+        "android_client_info": {
+          "package_name": "br.com.puc.pi3_es_2024_t2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUHrzp_u_RlbQ5VBkKCVjFSZQ2fGkJbcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
