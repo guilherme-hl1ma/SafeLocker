@@ -31,8 +31,3 @@ SafeLocker é um aplicativo Android que visa guardar os pertences do cliente em 
   <img alt="screenshot" width="25%" src="screenshots/img_2.png"/>
 
 </p>
-
-# Conta do Gerente
-Para acessar os recursos do gerente, por favor utilize as credenciais abaixo:
-- Email: espi3grupo2@gmail.com
-- Senha: ProjetoG2
